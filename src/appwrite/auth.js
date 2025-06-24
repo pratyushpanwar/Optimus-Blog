@@ -6,7 +6,7 @@ export class AuthService {
     account;
 
     constructor () {
-        this.client()
+        this.client
         .setEndpoint(conf.appwriteUrl) // Your API Endpoint
         .setProject(conf.appwriteProjectId);  
         
@@ -26,11 +26,11 @@ export class AuthService {
         }
     }
 
-    async login(email, password) {
+    async login({email, password}) {
         try {
             return await this.account.createEmailPasswordSession(email, password)
         } catch (error) {
-            return error
+            throw error
         }
     }
 
