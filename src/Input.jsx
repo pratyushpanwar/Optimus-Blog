@@ -11,7 +11,7 @@ function Input({
     const id = useId()
     return (
         <div>
-            {lable && (
+            {label && (
                 <label htmlFor={id} className="inline-block mb-1 pl-1">
                     {label}
                 </label>
