@@ -8,13 +8,16 @@ function Home() {
     const authStatus = useSelector(state => state.auth.status)
 
     useEffect(() => {
-        appwriteService.getPosts().then((posts) => {
+        if(authStatus){
+            appwriteService.getPosts().then((posts) => {
             if (posts) {
                 
                 
                 setPosts(posts.rows)
             }
         })
+        }
+
     }, [])
   
     if (posts.length === 0) {

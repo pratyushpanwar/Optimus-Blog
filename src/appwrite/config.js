@@ -70,12 +70,12 @@ export class Service {
 
     async getPost(slug){
         try {
-            return await this.databases.getDocument(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
-                slug
+            return await this.tablesDB.getRow({
+                databaseId: conf.appwriteDatabaseId,
+                tableId: conf.appwriteCollectionId,
+                rowId: slug
             
-            )
+        })
         } catch (error) {
             console.log("Appwrite service :: getPost :: error", error);
             return false
