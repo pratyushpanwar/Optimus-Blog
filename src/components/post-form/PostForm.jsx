@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { Button, Input, RTE, Select} from '../index'
 
 function PostForm({post}) {
-    const { register, handleSubmit, watch, setValue, control, getValue } = useForm({
+    const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             tite: post?.title || "",
             slug: post?.$id || "",

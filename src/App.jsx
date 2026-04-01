@@ -11,8 +11,15 @@ function App() {
 
   useEffect(() => {
     authService.getCurrentUser()
-    .then((userData) => userData? 
-        dispatch(login(userData)): 
+    .then((Data) => Data? 
+        dispatch(login({
+          userData: {
+            $id: Data.$id,
+            status: Data.status,
+            name: Data.name,
+            email: Data.email
+          }
+        })): 
         dispatch(logout()))
 
     .finally(() => setLoading(false))

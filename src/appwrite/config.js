@@ -1,4 +1,4 @@
-import { Client, Storage, TablesDB } from "appwrite";
+import { Client, Storage, TablesDB, Query } from "appwrite";
 import conf from "../conf/conf";
 
 export class Service{
@@ -91,7 +91,9 @@ export class Service{
             return await this.databases.listRows({
                 databaseId: conf.appwriteDatabaseId,
                 tableId: conf.appwriteCollectionId,
-                queries:[Query.equal('status','active')]
+                queries: [
+                    Query.equal('status', 'active')
+                ]
             })
         } catch (error) {
             console.log("Appwrite error :: getPosts :: error ",

@@ -2,10 +2,11 @@ import React from 'react'
 import { useId } from 'react'
 
 function Select({
+    ref,
     label,
     options,
     className="",
-    ref
+    ...props
 }) {
   const id = useId()
   return (

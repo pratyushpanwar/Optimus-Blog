@@ -1,4 +1,4 @@
-import React from 'react'
+
 import React, {useState} from 'react'
 import authService from '../appwrite/auth'
 import {Link ,useNavigate} from 'react-router-dom'
@@ -17,6 +17,10 @@ function Signup() {
         setError("")
         try {
             const userData = await authService.createAccount(data)
+            console.log("hello");
+            
+            console.log(userData);
+            
             if (userData) {
                 const userData = await authService.getCurrentUser()
                 if(userData) dispatch(login(userData));

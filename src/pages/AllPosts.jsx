@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, PostCard } from '../components'
 import service from '../appwrite/config'
 
