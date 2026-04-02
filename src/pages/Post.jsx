@@ -17,7 +17,10 @@ export default function Post() {
     useEffect(() => {
         if (slug) {
             service.getPost(slug).then((post) => {
-                if (post) setPost(post);
+                if (post) {
+                    setPost(post)
+                    console.log(service.getFilePreview(post.featuredImage))
+                }
                 else navigate("/");
             });
         } else navigate("/");

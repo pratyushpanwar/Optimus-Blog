@@ -5,9 +5,10 @@ import service from '../appwrite/config'
 function AllPosts() {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        service.getPosts().then((posts) => {
-            if(posts){
-                setPosts(posts.documents)
+        service.getPosts([]).then((post) => {
+            if(post){
+                
+                setPosts(post.rows)
             }
         })
     }, []);

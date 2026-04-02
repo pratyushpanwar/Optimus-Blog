@@ -1,4 +1,4 @@
-import { Client, Storage, TablesDB, Query } from "appwrite";
+import { Client, Storage, TablesDB, Query, ID, Permission, Role } from "appwrite";
 import conf from "../conf/conf";
 
 export class Service{
@@ -18,9 +18,9 @@ export class Service{
     async createPost({title, slug, content, featuredImage, status, userId}){
         try {
             return await this.databases.createRow({
-                databaseId: conf.databaseId,
+                databaseId: conf.appwriteDatabaseId,
                 tableId: conf.appwriteCollectionId,
-                tableId: slug,
+                rowId: slug,
                 data: {
                     title,
                     content,
@@ -41,7 +41,7 @@ export class Service{
         try {
             return await this.databases.updateRow({
                 databaseId: conf.appwriteDatabaseId,
-                tableId: appwriteCollectionId,
+                tableId: conf.appwriteCollectionId,
                 rowId:slug,
                 data: {
                     title,
@@ -110,7 +110,8 @@ export class Service{
             return await this.bucket.createFile({
                 bucketId: conf.appwriteBucketId,
                 fileId: ID.unique(),
-                file: file
+                file: file,
+                permissions: [ Permission.read(Role.any()) ]
             })
         } catch (error) {
             console.log("Appwrite error :: uploadFile :: error ",
@@ -133,12 +134,13 @@ export class Service{
         }
     }
 
-    async getFilePreview(fileId){
+        getFilePreview(fileId){
         try {
-            return this.bucket.getFilePreview({
+            const material = this.bucket.getFileView({
                 bucketId: conf.appwriteBucketId,
                 fileId: fileId
             })
+            return material
         } catch (error) {
             console.log("Appwrite error :: getFilePreview :: error ",
                 error)

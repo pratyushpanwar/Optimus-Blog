@@ -6,20 +6,27 @@ import { useDispatch } from 'react-redux'
 import { login as storeLogin } from '../store/authSlice'
 import authService from '../appwrite/auth'
 
-function Login({email, password}) {
+function Login() {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { register, handleSubmit } = useForm()
   const [error, setError] = useState("");
 
-  const login = async() => {
+  const login = async(data) => {
     try {
       setError("")
-      const session = await authService.login({email,password})
+      const session = await authService.login(data)
       if(session){
-        const userData = await authService.getCurrentUser()
-        dispatch(storeLogin(userData))
+        const Data = await authService.getCurrentUser()
+        
+        dispatch(storeLogin({
+            userData: {
+                $id: Data.$id,
+                name: data.name,
+                email: Data.email
+            }
+        }))
         navigate('/')
       }
     } catch (error) {

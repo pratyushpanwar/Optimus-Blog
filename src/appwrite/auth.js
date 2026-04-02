@@ -21,9 +21,9 @@ export class AuthService {
                 password: password,
                 name: name,
             }); 
-            console.log(user)
+            
             if(user){
-                this.login({email,password})
+                return this.login({email,password})
             }else{
                 return user;
             }

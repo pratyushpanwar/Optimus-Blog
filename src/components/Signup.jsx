@@ -17,13 +17,19 @@ function Signup() {
         setError("")
         try {
             const userData = await authService.createAccount(data)
-            console.log("hello");
             
-            console.log(userData);
             
             if (userData) {
-                const userData = await authService.getCurrentUser()
-                if(userData) dispatch(login(userData));
+                const Data = await authService.getCurrentUser()
+                console.log(Data);
+                
+                if(Data) dispatch(login({
+                    userData: {
+                        $id: Data.$id,
+                        name: Data.name,
+                        email: Data.email
+                    }
+                }));
                 navigate("/")
             }
         } catch (error) {
