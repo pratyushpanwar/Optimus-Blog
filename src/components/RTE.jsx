@@ -11,10 +11,11 @@ function RTE({name, control, label, defaultValue=''}) {
         <Controller
         name={name || 'content'}
         control={control}
-        render={({field: {onchange}}) => (
+        render={({field: {onChange, value}}) => (
             <Editor 
             apiKey={conf.editorApiKey}
-            intitalValue={defaultValue}
+            initalValue={defaultValue}
+            value={value}
             init={{
                 intitalValue: defaultValue,
                 height: 500,
@@ -46,7 +47,7 @@ function RTE({name, control, label, defaultValue=''}) {
             content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
         
             }}
-            onEditorChange={onchange}
+            onEditorChange={onChange}
             />
         )}
         />

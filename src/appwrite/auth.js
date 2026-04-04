@@ -43,6 +43,7 @@ export class AuthService {
         } catch (error) {
             console.log("Appwrite service :: login :: error ",
                 error)
+                return error.message
         }
     }
 

@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
         {
             path: "/",
-            element: <Home />,
+            element: <Home/>
         },
         {
             path: "/login",
@@ -77,7 +77,6 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} >
-      <App/>
       </RouterProvider>
     </Provider>
   </StrictMode>,
